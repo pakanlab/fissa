@@ -299,6 +299,7 @@ class Experiment():
 
         if redo:
             print('Doing region growing and data extraction....')
+            sys.stdout.flush()
             # define inputs
             inputs = [0] * self.nTrials
             for trial in range(self.nTrials):
@@ -414,6 +415,7 @@ class Experiment():
         # separate data, if necessary
         if redo_sep:
             print('Doing signal separation....')
+            sys.stdout.flush()
             # predefine data structures
             sep = [[None for t in range(self.nTrials)]
                    for c in range(self.nCell)]
