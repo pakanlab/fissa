@@ -13,7 +13,11 @@ Authors:
 from past.builtins import basestring
 
 import collections
-
+import os
+import warnings
+with warnings.catch_warnings():
+    warnings.filterwarnings("ignore",category=FutureWarning)
+    import h5py
 import numpy as np
 import tifffile
 
@@ -36,9 +40,18 @@ def image2array(image):
 
     """
     if isinstance(image, basestring):
-        return tifffile.imread(image)
+        fnm, file_extension = os.path.splitext(image)
+        if file_extension =='.h5':
+            imfile = h5py.File(image, 'r') # load .h5 file
+            imgarray = imfile['imaging'] # get 'imaging' dataset
+            imageData = np.squeeze(imgarray)            
+            imfile.close()
+            return imageData     
+        elif file_extension =='.tif':
+            return tifffile.imread(image)
 
-    return np.array(image)
+    if isinstance(image, np.ndarray):
+        return image
 
 
 def getmean(data):
