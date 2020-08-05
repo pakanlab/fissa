@@ -4,7 +4,6 @@ Authors:
     - Sander W Keemink (swkeemink@scimail.eu)
     - Scott C Lowe
 """
-
 from __future__ import print_function
 from past.builtins import basestring
 
@@ -293,6 +292,8 @@ class Experiment():
             try:
                 nCell, raw, roi_polys = np.load(fname, allow_pickle=True)
                 print('Reloading previously prepared data...')
+                 # get number of trials from previous file, not from images incase of change
+                self.nTrials = len(raw[0])
             except BaseException:
                 redo = True
 
