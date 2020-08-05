@@ -21,15 +21,15 @@ from . import deltaf
 from . import neuropil as npil
 from . import roitools
 
-try:
-    from multiprocessing import Pool
-    has_multiprocessing = True
-except ImportError:
-    warnings.warn('Multiprocessing library is not installed, using single ' +
-                  'core instead. To use multiprocessing install it by: ' +
-                  'pip install multiprocessing')
-    has_multiprocessing = False
-
+#try:
+#    from multiprocessing import Pool
+#    has_multiprocessing = True
+#except ImportError:
+#    warnings.warn('Multiprocessing library is not installed, using single ' +
+#                  'core instead. To use multiprocessing install it by: ' +
+#                  'pip install multiprocessing')
+#    has_multiprocessing = False
+has_multiprocessing = False
 
 def extract_func(inputs):
     """Extract data using multiprocessing.
