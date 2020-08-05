@@ -25,12 +25,14 @@ from . import roitools
 
 
 def image2array(image):
-    """Loads a TIFF image from disk.
-
+    """Take the object 'image' and returns an array.
+    
     Parameters
-    ----------
-    image : str or array_like
-        Either a path to a TIFF file, or array_like data.
+    ---------
+    image : unknown
+        The data. Should be either a tif or an h5 file location, or a list
+        of already loaded in data. **Note for .h5 files, data must be in 
+        a dataset called 'imaging'.
 
     Returns
     -------
